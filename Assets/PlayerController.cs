@@ -4,16 +4,16 @@ using UnityEngine.Networking;
 
 public class PlayerController : NetworkBehaviour {
 
-    void Update() {
+    void FixedUpdate() {
         if (!isLocalPlayer) {
             return;
         }
 
-        var rot = -Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
-        var move = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
+        var moveX = Input.GetAxis("Horizontal") * Time.fixedDeltaTime * 3.0f;
+        var moveY = Input.GetAxis("Vertical") * Time.fixedDeltaTime * 3.0f;
 
-        transform.Rotate(0, 0, rot);
-        transform.Translate(move, 0, 0);
+		var rigidBody = GetComponent<Rigidbody2D> ();
+		rigidBody.MovePosition(new Vector2(rigidBody.position.x + moveX, rigidBody.position.y + moveY));
     }
 
     public override void OnStartLocalPlayer() {

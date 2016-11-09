@@ -13,6 +13,10 @@ public class PlayerController : NetworkBehaviour {
         return;
     }
 
+
+
+		Camera.main.transform.position = new Vector3 (transform.position.x, transform.position.y, Camera.main.transform.position.z); 
+
     var moveX = Input.GetAxis("Horizontal") * Time.fixedDeltaTime * 3.0f;
     var moveY = Input.GetAxis("Vertical") * Time.fixedDeltaTime * 3.0f;
 

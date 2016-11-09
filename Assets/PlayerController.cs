@@ -5,16 +5,15 @@ using UnityEngine.Networking;
 public class PlayerController : NetworkBehaviour {
 
 	public GameObject bulletPrefab;
-
 	public Transform bulletSpawn;
 
-    void FixedUpdate() {
-        if (!isLocalPlayer) {
-            return;
-        }
+  void FixedUpdate() {
+    if (!isLocalPlayer) {
+        return;
+    }
 
-        var moveX = Input.GetAxis("Horizontal") * Time.fixedDeltaTime * 3.0f;
-        var moveY = Input.GetAxis("Vertical") * Time.fixedDeltaTime * 3.0f;
+    var moveX = Input.GetAxis("Horizontal") * Time.fixedDeltaTime * 3.0f;
+    var moveY = Input.GetAxis("Vertical") * Time.fixedDeltaTime * 3.0f;
 
 		var rigidBody = GetComponent<Rigidbody2D> ();
 		rigidBody.MovePosition(new Vector2(rigidBody.position.x + moveX, rigidBody.position.y + moveY));
@@ -24,11 +23,11 @@ public class PlayerController : NetworkBehaviour {
 		{
 			CmdFire();
 		}
-    }
+  }
 
-    public override void OnStartLocalPlayer() {
-        foreach (Renderer rend in GetComponentsInChildren <Renderer>()) rend.material.color = Color.blue;
-    }
+  public override void OnStartLocalPlayer() {
+    foreach (Renderer rend in GetComponentsInChildren <Renderer>()) rend.material.color = Color.blue;
+  }
 
 	[Command]
 	void CmdFire()

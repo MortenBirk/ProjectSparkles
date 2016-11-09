@@ -3,8 +3,8 @@ using System.Collections;
 
 public class BulletController : MonoBehaviour {
 
-	void OnCollisionEnter2D(Collision2D collision)	{
-		var hit = collision.gameObject;
+	void OnTriggerEnter2D(Collider2D collider)	{
+		var hit = collider.gameObject;
 		var health = hit.GetComponent<HealthController> ();
 
 		if (health != null) {

@@ -7,10 +7,15 @@ public class PlayerController : NetworkBehaviour {
 	public GameObject bulletPrefab;
 	public Transform bulletSpawn;
 
+
   void FixedUpdate() {
     if (!isLocalPlayer) {
         return;
     }
+
+
+
+		Camera.main.transform.position = new Vector3 (transform.position.x, transform.position.y, Camera.main.transform.position.z); 
 
     var moveX = Input.GetAxis("Horizontal") * Time.fixedDeltaTime * 3.0f;
     var moveY = Input.GetAxis("Vertical") * Time.fixedDeltaTime * 3.0f;
